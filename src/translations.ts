@@ -31,6 +31,11 @@ export const translations = {
       tag: 'Nuestras Ofertas',
       title: 'Ofertas Exclusivas'
     },
+    expert: {
+      tag: 'EXPERIENCIA Y CONFIANZA',
+      title: 'Viaja de la mano de un experto',
+      desc: 'Operador mayorista de viajes con más de 20 años de experiencia en el mercado, innovando cada vez más los viajes y experiencias para clientes exigentes. Nuestros destinos te ofrecen la oportunidad de explorar culturas, sabores y relajarte en entornos únicos.'
+    },
     banner: {
       btn: 'Consultar ahora'
     },
@@ -97,6 +102,11 @@ export const translations = {
     offers: {
       tag: 'Our Offers',
       title: 'Exclusive Offers'
+    },
+    expert: {
+      tag: 'EXPERIENCE AND TRUST',
+      title: 'Travel with an expert',
+      desc: 'Wholesale travel operator with over 20 years of experience in the market, constantly innovating trips and experiences for demanding clients. Our destinations offer you the opportunity to explore cultures, flavors, and relax in unique environments.'
     },
     banner: {
       btn: 'Inquire now'

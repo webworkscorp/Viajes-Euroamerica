@@ -22,7 +22,7 @@ const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-10 right-10 z-[70] flex flex-col items-end gap-2">
+    <div className="fixed bottom-4 right-10 z-[70] flex flex-col items-end gap-2">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -523,8 +523,28 @@ const ProfessionalCover = () => {
   const { t } = useTranslation();
   return (
     <section id="sobre-nosotros" className="w-full mt-32 mb-20 overflow-hidden">
-      {/* Text Section Above Image */}
-      <div className="container mx-auto px-6 text-center mb-20">
+      {/* Clean Image Section - Moved Top */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5 }}
+        className="relative w-full group mb-20"
+      >
+        <img 
+          src="https://i.imgur.com/wxZWYev.jpeg" 
+          alt={t.alt.cover} 
+          className="w-full h-auto block group-hover:scale-105 transition-transform duration-[5s] ease-out"
+          referrerPolicy="no-referrer"
+        />
+        
+        {/* Decorative Borders (Sharp) */}
+        <div className="absolute top-10 left-10 w-20 h-20 border-t-2 border-l-2 border-primary-blue" />
+        <div className="absolute bottom-10 right-10 w-20 h-20 border-b-2 border-r-2 border-primary-blue" />
+      </motion.div>
+
+      {/* Text Section - Moved Bottom */}
+      <div className="container mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -553,26 +573,6 @@ const ProfessionalCover = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Clean Image Section */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.5 }}
-        className="relative w-full group"
-      >
-        <img 
-          src="https://i.imgur.com/wxZWYev.jpeg" 
-          alt={t.alt.cover} 
-          className="w-full h-auto block group-hover:scale-105 transition-transform duration-[5s] ease-out"
-          referrerPolicy="no-referrer"
-        />
-        
-        {/* Decorative Borders (Sharp) */}
-        <div className="absolute top-10 left-10 w-20 h-20 border-t-2 border-l-2 border-primary-blue" />
-        <div className="absolute bottom-10 right-10 w-20 h-20 border-b-2 border-r-2 border-primary-blue" />
-      </motion.div>
     </section>
   );
 };
@@ -587,7 +587,7 @@ const ExclusiveOffers = () => {
   ];
 
   return (
-    <section id="ofertas" className="section-spacing">
+    <section id="ofertas" className="pt-24 pb-8">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-end mb-12">
           <div>
@@ -596,7 +596,7 @@ const ExclusiveOffers = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {offers.map((offer, idx) => (
             <motion.div
               key={idx}
@@ -622,7 +622,7 @@ const ExclusiveOffers = () => {
 const ImageBannerSection = () => {
   const { t } = useTranslation();
   return (
-    <section className="w-full py-12">
+    <section className="w-full pt-0 pb-12">
       <div className="container mx-auto px-6 flex justify-center">
         <div className="relative group max-w-2xl w-full">
           <img 
@@ -720,6 +720,281 @@ const WorldDestinations = () => {
   );
 };
 
+const ExpertiseSection = () => {
+  const { t } = useTranslation();
+  return (
+    <section className="w-full pt-10 pb-24 bg-[#f3f4f6] overflow-hidden">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-[2px] w-12 bg-primary-blue" />
+            <span className="text-primary-blue font-bold tracking-[0.25em] uppercase text-xs bg-transparent">
+              {t.expert.tag}
+            </span>
+            <div className="h-[2px] w-12 bg-primary-blue" />
+          </div>
+          
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-text-primary mb-8 leading-[1.15] tracking-tight">
+            {t.expert.title}
+          </h2>
+          
+          <p className="text-lg text-text-secondary leading-relaxed font-light mb-10">
+            {t.expert.desc}
+          </p>
+
+          <div className="flex items-center justify-center gap-4 group cursor-pointer" onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}>
+            <div className="w-12 h-12 rounded-full border border-primary-blue/30 flex items-center justify-center group-hover:bg-primary-blue group-hover:text-white transition-all duration-300 text-primary-blue">
+              <ArrowRight size={20} />
+            </div>
+            <span className="font-bold text-sm uppercase tracking-widest text-text-primary group-hover:text-primary-blue transition-colors">
+              {t.nav.contact}
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const LargeCoverSection = () => {
+  const { t } = useTranslation();
+  return (
+    <section className="w-full py-0">
+      <div className="w-full">
+        <img 
+          src="https://i.imgur.com/56Fv0QG.jpeg" 
+          alt={t.alt.cover} 
+          className="w-full h-auto object-cover min-h-[400px] lg:min-h-[600px]"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    </section>
+  );
+};
+
+import { GoogleGenAI } from "@google/genai";
+
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputMessage, setInputMessage] = useState('');
+  const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([
+    { role: 'assistant', content: '👋 ¡Hola! Soy tu asistente de Viajes Euroamerica. ¿Buscas destinos u ofertas?' }
+  ]);
+  const [turnCount, setTurnCount] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isOpen]);
+
+  const handleSendMessage = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!inputMessage.trim() || isFinished || isLoading) return;
+
+    const userText = inputMessage.trim();
+    setInputMessage('');
+    setMessages(prev => [...prev, { role: 'user', content: userText }]);
+    setIsLoading(true);
+
+    const newTurnCount = turnCount + 1;
+    setTurnCount(newTurnCount);
+
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      
+      // System instruction with website context
+      const systemInstruction = `
+        Eres un asistente de ventas virtual experto y persuasivo para "Viajes Euroamerica".
+        Tu objetivo es conectar con el usuario y guiarlo a la compra de forma natural.
+        
+        INFORMACIÓN DE LA EMPRESA:
+        - Nombre: Viajes Euroamerica
+        - Especialidad: Viajes de lujo, experiencias a medida, lunas de miel.
+        - Contacto: ventas1@veuroamerica.com, +502 2320-4949.
+        
+        REGLAS DE ORO (SÍGUELAS ESTRICTAMENTE):
+        1. **BREVEDAD EXTREMA**: Tus respuestas NO deben superar las 40 palabras. Sé directo.
+        2. **TONO NATURAL**: Habla como una persona real en WhatsApp. Usa emojis ocasionalmente. Evita formalismos robóticos.
+        3. **PERSUASIÓN SUTIL**: No suenes desesperado por vender. Despierta el deseo con adjetivos sensoriales (ej: "inolvidable", "exclusivo").
+        4. **OBJETIVO**: Tu meta es que pidan una cotización.
+        5. **INFORMACIÓN**: Si no sabes algo, sugiere contactar a un asesor humano.
+        
+        Estás en el turno ${newTurnCount} de 7.
+        
+        ${newTurnCount >= 7 ? 
+          "IMPORTANTE: Es el último mensaje. Despídete corto y pide llenar el formulario." : 
+          "Termina cada respuesta con una pregunta corta o invitación a cotizar."}
+      `;
+
+      const chat = ai.chats.create({
+        model: "gemini-3-flash-preview",
+        config: {
+          systemInstruction: systemInstruction,
+          temperature: 0.7,
+        },
+        history: messages.map(m => ({
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: m.content }]
+        }))
+      });
+
+      const result = await chat.sendMessage({ message: userText });
+      const responseText = result.text;
+
+      setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
+
+      if (newTurnCount >= 7) {
+        setIsFinished(true);
+      }
+
+    } catch (error) {
+      console.error("Error calling Gemini:", error);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Lo siento, tuve un problema técnico. Por favor, contáctanos directamente por WhatsApp." }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="fixed bottom-24 right-6 z-[80] flex flex-col items-end gap-4">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9, transformOrigin: "bottom right" }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="bg-white rounded-2xl shadow-2xl border border-gray-100 w-[90vw] sm:w-[400px] max-h-[80vh] flex flex-col overflow-hidden mb-2"
+          >
+            {/* Header */}
+            <div className="bg-primary-blue p-4 flex items-center justify-between text-white shadow-md z-10">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden backdrop-blur-sm">
+                    <img src="https://i.imgur.com/EOI35iq.png" alt="Bot" className="w-8 h-8 object-contain brightness-0 invert" />
+                  </div>
+                  <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-primary-blue rounded-full animate-pulse"></div>
+                </div>
+                <div>
+                  <h3 className="font-bold text-base">Asistente Virtual</h3>
+                  <p className="text-[10px] opacity-90 uppercase tracking-wider font-medium">En línea</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="text-white/80 hover:text-white transition-colors p-1 hover:bg-white/10 rounded-full"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Chat Body */}
+            <div className="flex-1 bg-gray-50 p-4 overflow-y-auto min-h-[300px] sm:min-h-[400px]">
+              <div className="flex flex-col gap-4">
+                {messages.map((msg, idx) => (
+                  <div key={idx} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                    <div className={`w-8 h-8 rounded-full border border-gray-100 flex-shrink-0 flex items-center justify-center p-1 shadow-sm ${msg.role === 'user' ? 'bg-primary-blue text-white' : 'bg-white'}`}>
+                      {msg.role === 'user' ? <User size={16} /> : <img src="https://i.imgur.com/EOI35iq.png" alt="Bot" className="w-full h-full object-contain" />}
+                    </div>
+                    <div className={`p-3.5 rounded-2xl shadow-sm text-sm max-w-[85%] leading-relaxed ${msg.role === 'user' ? 'bg-primary-blue text-white rounded-tr-none' : 'bg-white text-gray-700 rounded-tl-none border border-gray-100'}`}>
+                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                    </div>
+                  </div>
+                ))}
+                {isLoading && (
+                  <div className="flex gap-3">
+                    <div className="w-8 h-8 rounded-full bg-white border border-gray-100 flex-shrink-0 flex items-center justify-center p-1 shadow-sm">
+                      <img src="https://i.imgur.com/EOI35iq.png" alt="Bot" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm text-sm text-gray-600 border border-gray-100">
+                      <div className="flex gap-1.5">
+                        <span className="w-2 h-2 bg-primary-blue/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                        <span className="w-2 h-2 bg-primary-blue/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                        <span className="w-2 h-2 bg-primary-blue/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+                
+                {isFinished && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-center mt-2 pb-2"
+                  >
+                    <button 
+                      onClick={() => {
+                        setIsOpen(false);
+                        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="bg-green-500 text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-green-600 transition-all hover:scale-105 flex items-center gap-2 animate-pulse"
+                    >
+                      Ir al Formulario <ArrowRight size={16} />
+                    </button>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+
+            {/* Input Area */}
+            <div className="p-4 border-t border-gray-100 bg-white z-10">
+              <form onSubmit={handleSendMessage} className="flex gap-2">
+                <input 
+                  type="text" 
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  placeholder={isFinished ? "Chat finalizado" : "Escribe tu mensaje..."}
+                  disabled={isFinished || isLoading}
+                  className="flex-1 bg-gray-100 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-blue/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                />
+                <button 
+                  type="submit"
+                  disabled={isFinished || isLoading || !inputMessage.trim()}
+                  className="w-12 h-12 bg-primary-blue text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                >
+                  <Send size={20} className="ml-0.5" />
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-16 h-16 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.15)] rounded-full flex items-center justify-center border border-gray-100 relative group z-[80]"
+      >
+        <img 
+          src="https://i.imgur.com/EOI35iq.png" 
+          alt="Chatbot" 
+          className="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300" 
+        />
+        {!isOpen && (
+          <span className="absolute top-0 right-0 flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-blue opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-primary-blue border-2 border-white"></span>
+          </span>
+        )}
+      </motion.button>
+    </div>
+  );
+};
+
 const Footer = () => {
   const { t } = useTranslation();
   return (
@@ -814,11 +1089,14 @@ export default function App() {
               <ProfessionalCover />
               <ExclusiveOffers />
               <ImageBannerSection />
+              <ExpertiseSection />
               <WorldDestinations />
+              <LargeCoverSection />
               <ContactSection />
             </main>
             <Footer />
             <LanguageSwitcher />
+            <Chatbot />
           </motion.div>
         )}
       </div>
